@@ -11,24 +11,21 @@ bodyObj = {
   'std': std
 }
 
+var baelish = 'http://ec2-54-227-182-120.compute-1.amazonaws.com:8084/embersApi';
+
+var content = {};
 
 function runDemo (objName, Content) {
   
   var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
-  //xmlhttp.open('POST', MOUSE_TRACKER_SERVER + '/mouseTracker', true);
-  xmlhttp.open('POST', 'http://localhost:8084/embersApi', true);
+  xmlhttp.open('POST', baelish, true);
+  //xmlhttp.open('POST', 'http://localhost:8084/embersApi', true);
   // console.log('Connection open');
 
   xmlhttp.onreadystatechange = function(){
-    if (xmlhttp.readyState != 4 ) {
-      console.log('not 4');
-    }
-    if (xmlhttp.status == 500) {
-      console.log('500');
-    }
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-      var content = JSON.parse(xmlhttp.responseText);
-      console.log(content);
+      content = JSON.parse(xmlhttp.responseText);
+      console.log('content:', content);
     }
   }
 
