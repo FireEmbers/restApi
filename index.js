@@ -30,7 +30,6 @@ app.post ('/embersApi', function (req, res){
   demoApi(ignitionPt, U, std, alpha, function(maps){
     res.send(maps);
     console.log('res ' + id + ' @', Date());
-    console.log(maps);
   });
 
 
