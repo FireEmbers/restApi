@@ -11,7 +11,7 @@ bodyObj = {
   'std': std
 }
 
-var baelish = 'http://ec2-54-227-182-120.compute-1.amazonaws.com:8084/embersApi';
+var baelish = 'demo.crowdprocess.com/embersApi';
 
 var content = {};
 
