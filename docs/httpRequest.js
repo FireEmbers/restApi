@@ -11,7 +11,7 @@ bodyObj = {
   'std': std
 }
 
-var baelish = 'demo.crowdprocess.com/embersApi';
+var baelish = 'http://demo.crowdprocess.com/embersApi';
 
 var content = {};
 
