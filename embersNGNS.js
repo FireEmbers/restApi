@@ -28,8 +28,8 @@ app.post ('/embersApi', function (req, res){
   var std = parameters.std;
   var alpha = parameters.alpha;
 
-  demoApi(ignitionPt, U, std, alpha, function(maps){
-    res.send(maps);
+  demoApi(ignitionPt, U, std, alpha, function(kml, paths){
+    res.send(paths);
     console.log('res ' + id + ' @', Date());
   });
 
