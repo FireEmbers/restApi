@@ -9,7 +9,7 @@ bodyObj = {
   'alpha': alpha
 }
 
-var baelish = 'http://demo.crowdprocess.com/embersApi';
+var baelish = 'http://demo.crowdprocess.com/embersNGNS';
 
 var content = {};
 

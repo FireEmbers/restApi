@@ -1,3 +1,4 @@
+var pathToNGNS = require('./src/pathToNGNS');
 var express = require('express');
 var app = express();
 
@@ -10,7 +11,7 @@ app.configure(function(){
   app.use(express.bodyParser());
 });
 
-app.post ('/embersApi', function (req, res){
+app.post ('/embersNGNS', function (req, res){
 
   var id = Math.random()*100000;
   id = id.toFixed(0);
@@ -29,10 +30,9 @@ app.post ('/embersApi', function (req, res){
   var alpha = parameters.alpha;
 
   demoApi(ignitionPt, U, std, alpha, function(kml, paths){
-    res.send(paths);
+    res.send(pathToNGNS(paths));
     console.log('res ' + id + ' @', Date());
   });
-
 
 });
 
