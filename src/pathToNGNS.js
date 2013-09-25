@@ -1,7 +1,5 @@
 module.exports = function pathToNGNS(path){
 
-  console.log(path);
-
   var outputString = '';
 
   var currentPath = path['averageCase'];
