@@ -25,7 +25,7 @@ app.post ('/embersApi', function (req, res){
 
   var ignitionPt = parameters.ignitionPt;
   var U = parameters.U;
-  var std = parameters.std;
+  var std = 10; //quick fix
   var alpha = parameters.alpha;
 
   demoApi(ignitionPt, U, std, alpha, function(kml, paths){

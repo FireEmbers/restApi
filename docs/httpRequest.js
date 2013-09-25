@@ -2,13 +2,11 @@ var ignitionPt = [ 41 + 47 / 60 + 6.39/3600,- (8 + 8/60 + 26.43/3600)];
 
 var U = 1;
 var alpha= 135;
-var std = 10;
 
 bodyObj = {
   'ignitionPt': ignitionPt,
   'U': U,
-  'alpha': alpha,
-  'std': std
+  'alpha': alpha
 }
 
 var baelish = 'http://demo.crowdprocess.com/embersApi';
