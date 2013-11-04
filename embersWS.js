@@ -1,11 +1,10 @@
-var pathToNGNS = require('./src/pathToNGNS');
 var express = require('express');
 var app = express();
 
 var cors = require('cors')
 app.use(cors());
 
-var demoApi = require('demoAPI');
+var ngnsAPI = require('ngnsAPI');
 
 app.configure(function(){
   app.use(express.bodyParser());
@@ -26,11 +25,10 @@ app.post ('/embersNGNS', function (req, res){
 
   var ignitionPt = parameters.ignitionPt;
   var U = parameters.U;
-  var std = 10; //quick fix
   var alpha = parameters.alpha;
 
-  demoApi(ignitionPt, U, std, alpha, function(kml, paths){
-    res.send(pathToNGNS(paths));
+  ngnsAPI(ignitionPt, U, alpha, function(kml, ngnsOutput){
+    res.send(ngnsOutput);
     console.log('res ' + id + ' @', Date());
   });
 

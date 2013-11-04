@@ -17,8 +17,7 @@ function runDemo (objName, Content) {
   
   var xmlhttp = new XMLHttpRequest();// new HttpRequest instance 
   xmlhttp.open('POST', baelish, true);
-  //xmlhttp.open('POST', 'http://localhost:8084/embersApi', true);
-  // console.log('Connection open');
+
 
   xmlhttp.onreadystatechange = function(){
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
