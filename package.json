@@ -1,10 +1,13 @@
 {
-  "name": "embersRestApi",
+  "name": "embers-ws",
   "version": "0.1.0",
-  "description": "Embers rest api ",
-  "main": "index.js",
+  "description": "Embers rest api",
+  "main": "embers-ws.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "embers-ws": "embers-ws.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,15 @@
   "dependencies": {
     "express": "~3.4.0",
     "cors": "~1.0.1",
-    "ngnsAPI": "git://github.com/FireEmbers/ngnsAPI.git"
+    "ngnsAPI": "git://github.com/FireEmbers/ngnsAPI.git",
+    "demoAPI": "git://github.com/FireEmbers/demoAPI.git"
+  },
+  "ploy": {
+    "excludes": [
+      "docs"
+    ],
+    "tags": [
+      "famiglia"
+    ]
   }
 }
