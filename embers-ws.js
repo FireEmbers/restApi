@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 var express = require('express');
 var app = express();
+var printKml = require('./src/printKml');
+var join = require('path').join;
 
 var cors = require('cors')
 app.use(cors());
@@ -11,6 +13,8 @@ var demoAPI = require('demoAPI');
 app.configure(function(){
   app.use(express.bodyParser());
 });
+
+app.use('/outputs', express.static(__dirname + '/outputs/'));
 
 app.post ('/embersNGNS', function (req, res){
 
@@ -40,7 +44,7 @@ app.post ('/runEmbers', function (req, res){
   var id = Math.random()*100000;
   id = id.toFixed(0);
 
-  console.log('req ' + id + ' @', Date());
+  console.log('\n>req ' + id + ' @', Date());
   console.log('Running Embers...');
 
   if (!req.body)
@@ -53,11 +57,15 @@ app.post ('/runEmbers', function (req, res){
       console.log(err);
       res.send(err);
     }
-    res.send(pathArrays);
-    console.log('Done.');
-    console.log('res ' + id + ' @', Date());
-  });
 
+    var outputPath = join(__dirname, 'outputs');
+    printKml(kml, id, outputPath, function (){
+      
+      res.send({reqId: id});
+      console.log('Done.');
+      console.log('res ' + id + ' @', Date());
+    });
+  });
 });
 
-app.listen(8083); 
+app.listen(8083);

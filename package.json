@@ -31,7 +31,8 @@
   },
   "ploy": {
     "excludes": [
-      "docs"
+      "docs",
+      "outputs"
     ],
     "tags": [
       "famiglia"
