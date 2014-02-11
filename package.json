@@ -27,7 +27,9 @@
     "express": "~3.4.0",
     "cors": "~1.0.1",
     "ngnsAPI": "git://github.com/FireEmbers/ngnsAPI.git",
-    "demoAPI": "git://github.com/FireEmbers/demoAPI.git"
+    "demoAPI": "git://github.com/FireEmbers/demoAPI.git",
+    "embers": "git://github.com/FireEmbers/embers.git",
+    "embersutils": "https://github.com/FireEmbers/utils/archive/master.tar.gz"
   },
   "ploy": {
     "excludes": [
