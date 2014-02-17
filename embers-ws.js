@@ -104,17 +104,16 @@ app.post ('/fullEmbers', function (req, res){
     opts.credentials = credentials;
   }
 
-fullEmbers(opts, onMaps);
+  var progressStream = fullEmbers(opts, onMaps);
 
-  // var progressStream = fullEmbers(opts, onMaps);
-
-  // progressStream.on('data', function (d) {
-  //   res.write(d);
-  // });
+  progressStream.on('data', function (d) {
+    res.write(d);
+  });
 
   function onMaps (err, kml){
 
-    return res.end('dummy response', 'utf8');
+    console.log('Done.');
+    console.log('res ' + id + ' @', Date());
 
     if (err) {
       console.log(err);
@@ -126,7 +125,7 @@ fullEmbers(opts, onMaps);
       //count kml size
       var maps = [];
       var countDown = Object.keys(kml).length-2;//minus time1 and time2 parameter
-      var onKmlWrite = function (err){
+      var onKmlWrite = function  (err){
 
         if (err) {
           console.log(err);
@@ -147,10 +146,8 @@ fullEmbers(opts, onMaps);
           'time': kml.time2
         }];
 
-        console.log('Done.');
-        console.log('res ' + id + ' @', Date());
         var response = {reqId: id, maps: mapsArr, time: 60, err: null};
-        return res.end(JSON.stringify(response), 'utf8');
+        return res.end(JSON.stringify(response), encoding = 'utf8');
 
       };
 
