@@ -5,6 +5,7 @@ var printKml = require('./src/printKml');
 var demoPrintKml = require('./src/demoPrintkml');
 var credentials = require('./credentials');
 var join = require('path').join;
+var fullEmbers = require('embers');
 
 var cors = require('cors');
 app.use(cors());
@@ -85,7 +86,9 @@ app.post ('/runEmbers', function (req, res){
 
 //Full Stochastic Embers
 app.post ('/fullEmbers', function (req, res){
-  var fullEmbers = require('embers');
+
+  res.setHeader('Content-Type', 'application/octet-stream');
+
   var id = Math.random()*100000;
   id = id.toFixed(0);
 
@@ -97,10 +100,21 @@ app.post ('/fullEmbers', function (req, res){
 
   var opts = req.body;
 
-  fullEmbers(opts, credentials, function(err, kml){
+  if (!opts.credentials) {
+    opts.credentials = credentials;
+  }
 
-    console.log('Done.');
-    console.log('res ' + id + ' @', Date());
+fullEmbers(opts, onMaps);
+
+  // var progressStream = fullEmbers(opts, onMaps);
+
+  // progressStream.on('data', function (d) {
+  //   res.write(d);
+  // });
+
+  function onMaps (err, kml){
+
+    return res.end('dummy response', 'utf8');
 
     if (err) {
       console.log(err);
@@ -112,7 +126,7 @@ app.post ('/fullEmbers', function (req, res){
       //count kml size
       var maps = [];
       var countDown = Object.keys(kml).length-2;//minus time1 and time2 parameter
-      var onKmlWrite = function  (err){
+      var onKmlWrite = function (err){
 
         if (err) {
           console.log(err);
@@ -133,7 +147,11 @@ app.post ('/fullEmbers', function (req, res){
           'time': kml.time2
         }];
 
-        return res.send({reqId: id, maps: mapsArr, time: 60, err: null});
+        console.log('Done.');
+        console.log('res ' + id + ' @', Date());
+        var response = {reqId: id, maps: mapsArr, time: 60, err: null};
+        return res.end(JSON.stringify(response), 'utf8');
+
       };
 
       for (var p in kml) {
@@ -144,7 +162,7 @@ app.post ('/fullEmbers', function (req, res){
         maps[p] = filePath;
       }
     }
-  });
+  }
 });
 
 var port = 8083;
