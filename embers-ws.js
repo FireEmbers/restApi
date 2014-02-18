@@ -1,4 +1,10 @@
 #!/usr/bin/env node
+require('nodetime').profile({
+  accountKey: '08581cdb4c5a7f1d543f1b48e4a70b3cf560aa51',
+  appName: 'embers-ws'
+});
+
+
 var express = require('express');
 var app = express();
 var printKml = require('./src/printKml');
